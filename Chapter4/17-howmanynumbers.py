@@ -1,4 +1,4 @@
-# DictDiff
+# HowManyUniqueNumbers
 #  - Create a function how_many_different_numbers
 #    - Should take a list of integers of arbitrary length
 #    - Should output how many different integers are present
