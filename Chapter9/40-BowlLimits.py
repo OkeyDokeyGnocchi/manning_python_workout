@@ -26,6 +26,18 @@ class Scoop():
 def create_scoops(flavors=["Chocolate", "Vanilla", "Strawberry"]):
     return [Scoop(flavor) for flavor in flavors]
 
+# Beyond Exercise: Person and Population
+#  - Class Person()
+#    - Has name
+#    - Has class attribute population
+#      - Should increase population by 1 when creating a new person
+
+class Person():
+    population = 0
+
+    def __init__(self, name):
+        self.name = name
+        Person.population += 1
 
 if __name__ == '__main__':
     scoops = create_scoops()
@@ -36,3 +48,12 @@ if __name__ == '__main__':
     mint_chip = Scoop("Mint chip")
     b.add_scoops(mint_chip)
     print(f'The bowl of ice cream contains: {b}')
+
+    print()
+    p1 = Person("p1")
+    print(f'P1 pop: {p1.population} Person Class pop: {Person.population}')
+    p2 = Person("p2")
+    p3 = Person("p3")
+    p4 = Person("p4")
+    p5 = Person("p5")
+    print(f'P5 pop: {p5.population} Person Class pop: {Person.population}')
