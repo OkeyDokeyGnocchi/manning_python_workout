@@ -26,7 +26,20 @@ class StringKeyDict(dict):
     def __setitem__(self, key, val):
         return dict.__setitem__(self, str(key), val)
 
-
+# Optional Exercise: RecentDict
+#  - Create a new class RecentDict()
+#    - Should be a subclass of dict
+#    - Should only store the N most recent entries. Remove the oldest
+class RecentDict(dict):
+    item_count = 0
+    MAX_ITEMS = 3
+    def __setitem__(self, key, val):
+        if self.item_count == self.MAX_ITEMS:
+            del self[(next(iter(self)))]
+        else:
+            self.item_count += 1
+        
+        return dict.__setitem__(self, key, val)
         
 
 if __name__ == '__main__':
@@ -47,3 +60,13 @@ if __name__ == '__main__':
 
     skd[1] = 100
     print(skd["1"])
+    print("#####\n")
+
+    rd = RecentDict()
+
+    rd[1] = 100
+    rd[2] = 200
+    rd[3] = 300
+    print(rd)
+    rd[4] = 400
+    print(rd)
