@@ -7,26 +7,29 @@
 from random import choice
 
 class Animal():
-    num_legs = 4
-    def __init__(self, color):
+    def __init__(self, color, num_legs):
         self.color = color
+        self.species = self.__class__.__name__
+        self.num_legs = num_legs
     
     def __repr__(self):
         return f'This {self.species} has {self.num_legs} legs and is {self.color}'
 
 class Sheep(Animal):
-    species = "sheep"
+    def __init__(self, color):
+        super().__init__(color, 4)
 
 class Wolf(Animal):
-    species = "wolf"
+    def __init__(self, color):
+        super().__init__(color, 4)
 
 class Snake(Animal):
-    species = "snake"
-    num_legs = 0
+    def __init__(self, color):
+        super().__init__(color, 0)
 
 class Parrot(Animal):
-    species = "parrot"
-    num_legs = 2
+    def __init__(self, color):
+        super().__init__(color, 2)
 
 def create_one_animal(animal_class, color):
     return animal_class(color)
