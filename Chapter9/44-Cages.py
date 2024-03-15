@@ -5,8 +5,6 @@
 #    - Should be able to add arbitary number of animals
 #    - Should be able to print (__repr__) and have it produce a string with cage ID and animals in cage
 
-from random import choice
-
 class Animal():
     def __init__(self, color, num_legs):
         self.color = color
