@@ -49,11 +49,11 @@ def create_zoo_animals(num_each_animal=1):
         Snake,
         Parrot
     ]
-    zoo_animals = []
 
     # List comprehension feels a little less straightfoward to read, but it's good practice for using them
     return [create_one_animal(animal, choice(colors)) for animal in animals for i in range(num_each_animal)]
 """
+    zoo_animals = []
     for animal in animals:
         for i in range(num_each_animal):
             zoo_animals.append(create_one_animal(animal, choice(colors)))
