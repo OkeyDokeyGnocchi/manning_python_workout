@@ -7,7 +7,6 @@
 class MyEnumerate():
     def __init__(self, iterable, user_idx=0):
         self.iterable = iterable
-        self.index = 0
         self.user_idx = user_idx
     
     def __iter__(self):
