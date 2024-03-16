@@ -104,6 +104,22 @@ class Zoo():
     def number_of_legs(self):
         return sum(animal.num_legs for cage in self.cages
                    for animal in cage.animals)
+    
+    def transfer_animal(self, target_zoo, animal):
+        for own_cage in self.cages:
+            for cage_animal in own_cage.animals:
+                if animal == cage_animal.__class__:
+                    for target_cage in target_zoo.cages:
+                        try:
+                            target_cage.add_animals(cage_animal)
+                            own_cage.remove_animals(cage_animal)
+                            return print(f'{cage_animal} transferred from Cage {own_cage.id} to Cage {target_cage.id} at {target_zoo.name}')
+                        except Exception as e:
+                            print(f'Note, transfer to cage {target_cage.id} in {target_zoo.name} failed due to: {e}')
+                else:
+                    print(f'{animal} not found in {own_cage.id}')
+        
+        raise Exception(f'Unable to move {animal} to {target_zoo.name}!')
 
     def __repr__(self):
         # Same issue as above, f-string doesn't play nicely with {\}
@@ -142,3 +158,17 @@ if __name__ == '__main__':
     #print(z.animals_by_color())
     print(z1.animals_by_color("white", "brown"))
     print()
+
+    z2 = Zoo("Zoo 2 Zoo")
+    cage_3 = Cage(3)
+    cage_4 = Cage(4)
+    sheep_3 = Sheep("grey")
+    sheep_4 = Sheep("sheep_colored")
+    parrot_2 = Parrot("orange")
+    cage_3.add_animals(sheep_3, sheep_4, parrot_2)
+    z2.add_cages(cage_3, cage_4)
+    print(z2)
+    z1.transfer_animal(z2, Sheep)
+    print("\n\n")
+    print(z1)
+    print(z2)
