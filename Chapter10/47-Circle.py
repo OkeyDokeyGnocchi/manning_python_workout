@@ -44,10 +44,16 @@ class MyRange():
         else:
             self.start, self.stop = start, stop
         self.step = step
-        self.current = self.start
     
     def __iter__(self):
-        return self
+        return MyRangeIterator(self.start, self.stop, self.step)
+
+class MyRangeIterator(MyRange):
+    def __init__(self, start, stop, step):
+        self.start = start
+        self.stop = stop
+        self.step = step
+        self.current = self.start
     
     def __next__(self):
         if self.step > 0 and self.current >= self.stop:
@@ -58,6 +64,7 @@ class MyRange():
             val = self.current
             self.current += self.step
             return val
+
     
 
 if __name__ == '__main__':
