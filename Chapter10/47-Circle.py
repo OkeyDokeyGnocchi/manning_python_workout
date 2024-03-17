@@ -50,7 +50,9 @@ class MyRange():
         return self
     
     def __next__(self):
-        if self.current >= self.stop:
+        if self.step > 0 and self.current >= self.stop:
+            raise StopIteration
+        elif self.step < 0 and self.current <= self.stop:
             raise StopIteration
         else:
             val = self.current
@@ -76,4 +78,10 @@ if __name__ == '__main__':
     for i in range(2, 10, 2):
         print(i)
     for i in MyRange(2, 10, 2):
+        print(i)
+    
+    print('## Range(10, 2, -2)')
+    for i in range(10, 2, -2):
+        print(i)
+    for i in MyRange(10, 2, -2):
         print(i)
