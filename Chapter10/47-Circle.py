@@ -29,12 +29,34 @@ class CircleIterator(Circle):
             self.index += 1
             return val
 
+# Circle generator function
 def circle_gen(iterable, num_elem):
     idx = 0
     while idx < num_elem:
         yield iterable[idx % len(iterable)]
         idx += 1
 
+# MyRange class
+class MyRange():
+    def __init__(self, start, stop, step=1):
+        if start == None:
+            self.start, self.stop = 0, stop
+        else:
+            self.start, self.stop = start, stop
+        self.step = step
+        self.current = self.start
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.current >= self.stop:
+            raise StopIteration
+        else:
+            val = self.current
+            self.current += self.step
+            return val
+    
 
 if __name__ == '__main__':
     c1 = Circle('abc', 5)
@@ -43,3 +65,15 @@ if __name__ == '__main__':
     # Optional exercise
     for v in circle_gen('abc', 5):
         print(v)
+
+    print("\n## Range(1,3) ##")
+    for i in range(1, 3):
+        print(i)
+    for i in MyRange(1, 3):
+        print(i)
+    
+    print("## Range(2, 10, 2) ##")
+    for i in range(2, 10, 2):
+        print(i)
+    for i in MyRange(2, 10, 2):
+        print(i)
